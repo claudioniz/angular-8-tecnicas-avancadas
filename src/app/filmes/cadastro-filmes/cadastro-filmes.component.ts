@@ -12,6 +12,10 @@ export class CadastroFilmesComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
+  get f() {
+    return this.cadastro.controls;
+  }
+
   ngOnInit() {
 
     this.cadastro = this.fb.group({
@@ -26,16 +30,17 @@ export class CadastroFilmesComponent implements OnInit {
 
   }
 
-  salvar(): void{
-    if(this.cadastro.invalid){
+  salvar(): void {
+    this.cadastro.markAllAsTouched();
+    if (this.cadastro.invalid) {
       return;
     }
 
-    alert('registro salvo com sucesso' + JSON.stringify(this.cadastro.value, null,4));
-    
+    alert('registro salvo com sucesso' + JSON.stringify(this.cadastro.value, null, 4));
+
   }
 
-  reiniciarForm(): void{
+  reiniciarForm(): void {
     this.cadastro.reset();
   }
 }
