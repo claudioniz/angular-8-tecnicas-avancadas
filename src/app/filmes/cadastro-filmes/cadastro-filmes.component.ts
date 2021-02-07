@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { FilmesService } from 'src/app/core/filmes.service';
 import { AlertaComponent } from 'src/app/shared/components/alerta/alerta.component';
 import { ValidarcamposService } from 'src/app/shared/components/campos/validarcampos.service';
@@ -20,7 +21,8 @@ export class CadastroFilmesComponent implements OnInit {
   constructor(public validacao: ValidarcamposService,
     public dialog: MatDialog,
     private fb: FormBuilder,
-    private filmesService: FilmesService
+    private filmesService: FilmesService,
+    private router: Router
   ) { }
 
   get f() {
@@ -58,8 +60,8 @@ export class CadastroFilmesComponent implements OnInit {
 
   private salvar(filme: Filme): void {
     this.filmesService.salvar(filme).subscribe(() => {
-      const config ={
-        data:{
+      const config = {
+        data: {
           btnSucesso: 'Ir para a listagem',
           btnCancelar: 'Cadastrar novo filme',
           corBtnCancelar: 'primary',
@@ -67,10 +69,25 @@ export class CadastroFilmesComponent implements OnInit {
         } as Alerta
       }
       const dialogRef = this.dialog.open(AlertaComponent, config);
-      //this.reiniciarForm();
-    }),
+      dialogRef.afterClosed().subscribe((opcao: boolean) => {
+        if (opcao) {
+          this.router.navigateByUrl('filmes');
+        } else {
+          this.reiniciarForm();
+        }
+      });
+    },
       () => {
-        alert('Erro ao salvar....');
-      }
+        const config = {
+          data: {
+            titulo: 'Erro ao salvar o registro!',
+            descricao: 'Não conseguimos salvar seu registro, favor tentar novamente mais tarde',
+            corbtnSucesso: 'warn',
+            btnSucesso: 'Fechar'
+          } as Alerta
+        };
+
+        this.dialog.open(AlertaComponent, config);
+      });
   }
 }

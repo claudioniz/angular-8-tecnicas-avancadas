@@ -229,6 +229,36 @@
       "urlIMDB": "",
       "genero": "Aventura",
       "id": 23
+    },
+    {
+      "titulo": "dfdsfasdf",
+      "urlFoto": "",
+      "dtLancamento": "2021-02-10T03:00:00.000Z",
+      "descricao": "dfdfadsfads",
+      "nota": 0,
+      "urlIMDB": "",
+      "genero": "Ficção Científica",
+      "id": 24
+    },
+    {
+      "titulo": "dfdsf",
+      "urlFoto": null,
+      "dtLancamento": "2021-02-18T03:00:00.000Z",
+      "descricao": "fsdfdsfds",
+      "nota": 0.1,
+      "urlIMDB": null,
+      "genero": "Terror",
+      "id": 25
+    },
+    {
+      "titulo": "ssdfdf",
+      "urlFoto": "",
+      "dtLancamento": "2021-02-09T03:00:00.000Z",
+      "descricao": "fdsfsdfds",
+      "nota": 0,
+      "urlIMDB": "",
+      "genero": "Terror",
+      "id": 26
     }
   ]
 }
