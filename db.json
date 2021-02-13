@@ -109,6 +109,26 @@
       "urlIMDb": "https://www.imdb.com/title/tt2527338/?ref_=vi_md_ti",
       "genero": "Aventura",
       "id": 11
+    },
+    {
+      "titulo": "filme sem descrição",
+      "urlFoto": "",
+      "dtLancamento": "2021-02-03T03:00:00.000Z",
+      "descricao": "",
+      "nota": 0,
+      "urlIMDB": "",
+      "genero": "Terror",
+      "id": 12
+    },
+    {
+      "titulo": "filme con descrição em duas linhas",
+      "urlFoto": "",
+      "dtLancamento": "2021-02-05T03:00:00.000Z",
+      "descricao": "Linha 01\nLinha 02",
+      "nota": 0,
+      "urlIMDB": "",
+      "genero": "Terror",
+      "id": 13
     }
   ]
 }

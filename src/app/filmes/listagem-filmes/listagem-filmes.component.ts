@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { FilmesService } from 'src/app/core/filmes.service';
 import { ConfigParams } from 'src/app/shared/models/config-params';
 import { Filme } from 'src/app/shared/models/filme';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'dio-listagem-filmes',
@@ -10,10 +11,10 @@ import { Filme } from 'src/app/shared/models/filme';
   styleUrls: ['./listagem-filmes.component.scss']
 })
 export class ListagemFilmesComponent implements OnInit {
-
-  config: ConfigParams={
-    pagina:0,
-    registrosPorPagina:4
+  readonly semFoto = "https://th.bing.com/th/id/R2fa0e781e0ce67556696ff4c6c4b63e5?rik=hBRNVFxNOktXBQ&riu=http%3a%2f%2fwww.casadei.com%2fon%2fdemandware.static%2fSites-casadei-Site%2f-%2fdefault%2fdw4b2b381d%2fimages%2fnoimagezoom.png&ehk=wcv6SXPeSxuaULGIjt2rwDmNSUkUQD3%2fa2ISxDTgOkI%3d&risl=&pid=ImgRaw"
+  config: ConfigParams = {
+    pagina: 0,
+    registrosPorPagina: 4
   }
 
   filmes: Filme[] = [];
@@ -30,13 +31,14 @@ export class ListagemFilmesComponent implements OnInit {
       genero: ['']
     });
 
-    this.filtrosListagem.get('texto').valueChanges.subscribe((val: string) => {
+    this.filtrosListagem.get('texto').valueChanges.pipe(debounceTime(400))
+    .subscribe((val: string) => {
       this.config.pesquisa = val;
       this.resetarConsulta();
     });
 
     this.filtrosListagem.get('genero').valueChanges.subscribe((val: string) => {
-      this.config.campo = {tipo: 'genero', valor:val};
+      this.config.campo = { tipo: 'genero', valor: val };
       this.resetarConsulta();
     });
 
